@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Dancing+Script:wght@400..700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+@import 'tailwindcss';
+
+/* -------------------------------------------------
+   THEME MAPPING (shadcn / tailwind tokens)
+--------------------------------------------------*/
+@theme inline {
+  --font-logo: var(--font-logo);
+  --font-accent: var(--font-accent);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+}
+
+/* -------------------------------------------------
+   ROOT DESIGN TOKENS
+   Charcoal Gray Base + Orange Accents
+--------------------------------------------------*/
+:root {
+  --radius: 0.625rem;
+
+  /* Fonts */
+  --font-logo: 'Baloo 2', cursive;
+  --font-accent: 'Inter', sans-serif;
+
+  /* -------------------------------------------------
+     BASE SURFACES (NEUTRAL CHARCOAL)
+  --------------------------------------------------*/
+  --background: oklch(28.884% 0.00393 264.567); /* deep charcoal */
+  --foreground: oklch(96% 0 0);
+
+  --card: oklch(38% 0.015 270); /* elevated charcoal */
+  --card-foreground: oklch(96% 0 0);
+
+  --popover: oklch(38% 0.015 270);
+  --popover-foreground: oklch(96% 0 0);
+
+  /* -------------------------------------------------
+     BRAND / ORANGE SYSTEM (WHISKEY / AMBER)
+  --------------------------------------------------*/
+  /* PRIMARY – Deep crimson red */
+  --primary: oklch(58% 0.2 25); /* whiskey → crimson */
+  --primary-foreground: oklch(98% 0 0);
+
+  /* ACCENT – Brighter ruby red */
+  --accent: oklch(62% 0.23 28); /* highlight red */
+  --accent-foreground: oklch(98% 0 0);
+
+  --secondary: oklch(42% 0.02 270); /* dark neutral */
+  --secondary-foreground: oklch(92% 0 0);
+
+  --muted: oklch(40% 0.015 270);
+  --muted-foreground: oklch(70% 0 0);
+
+  /* -------------------------------------------------
+     FEEDBACK
+  --------------------------------------------------*/
+  --destructive: oklch(66% 0.24 25);
+
+  /* -------------------------------------------------
+     BORDERS / INPUTS / FOCUS
+  --------------------------------------------------*/
+  --border: oklch(100% 0 0 / 10%);
+  --input: oklch(100% 0 0 / 16%);
+  --ring: oklch(62% 0.23 28);
+}
+
+/* -------------------------------------------------
+   BASE LAYER
+--------------------------------------------------*/
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background-image: url('/white-snow.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--foreground);
+
+    font-family: var(--font-accent);
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

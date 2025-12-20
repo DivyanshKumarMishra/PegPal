@@ -1,0 +1,13 @@
+const MILLISECONDS_PER_SECOND: number = 1000;
+const SECONDS_PER_MINUTE: number = 60;
+const MINUTES_PER_HOUR: number = 60;
+const HOURS_PER_DAY: number = 24;
+const DAYS_PER_WEEK: number = 7;
+
+export {
+  MILLISECONDS_PER_SECOND,
+  SECONDS_PER_MINUTE,
+  MINUTES_PER_HOUR,
+  HOURS_PER_DAY,
+  DAYS_PER_WEEK,
+};
