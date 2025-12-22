@@ -14,23 +14,25 @@ import {
 import AppLogo from '@/app/_custom_components/Logo';
 import useFetch from '@/hooks/UseFetch';
 import { SubmitHandler } from 'react-hook-form';
-import { LOGIN_URL } from '@/utils/url_constants';
+import { LOGIN_URL } from '@/utils/Constants';
 import { toast } from 'sonner';
+import { Api_Method } from '@/types/base';
+import { useUser } from '@/app/_contexts/user/UserContext';
+import { redirect } from 'next/navigation';
 
 function LoginPage() {
-  const { apiFunc, loading } = useFetch<LoginValues>();
+  const { initUser } = useUser();
+  const { apiFunc, loading } = useFetch<LoginValues, UserPublic>();
 
-  const loginHandler: SubmitHandler<LoginValues> = async (data) => {
-    const apiData = await apiFunc(LOGIN_URL, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    toast.success('Signup successful');
+  const loginHandler: SubmitHandler<LoginValues> = async (body) => {
+    const result = await apiFunc(LOGIN_URL, Api_Method.POST, body);
+    if (result.ok) {
+      toast.success('Login successful');
+      initUser();
+      redirect('/');
+    }
   };
+
   return (
     <Card className="w-full md:max-w-lg lg:max-w-xl px-6 bg-black/50 backdrop-blur-xl ">
       <CardHeader>
@@ -47,6 +49,7 @@ function LoginPage() {
           schema={login_schema}
           submitHandler={loginHandler}
           loading={loading}
+          btnText="Sign in"
         />
       </CardContent>
     </Card>

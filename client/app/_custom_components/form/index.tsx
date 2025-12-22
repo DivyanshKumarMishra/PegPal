@@ -5,6 +5,7 @@ import {
   useForm,
   Path,
   SubmitErrorHandler,
+  SubmitHandler,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { field_value_type } from '@/types/form/form.types';
@@ -39,12 +40,13 @@ type form_props<TValues extends FieldValues, TName extends Path<TValues>> = {
   schema: ZodTypeAny;
   submitHandler: SubmitHandler<TValues>;
   loading: boolean;
+  btnText?: string;
 };
 
 function RenderForm<TValues extends FieldValues, TName extends Path<TValues>>(
   props: form_props<TValues, TName>
 ) {
-  const { fields, schema, submitHandler, loading } = props;
+  const { fields, schema, submitHandler, loading, btnText = 'Submit' } = props;
   const {
     register,
     handleSubmit,
@@ -155,7 +157,7 @@ function RenderForm<TValues extends FieldValues, TName extends Path<TValues>>(
         })}
       </div>
       <Button type="submit" disabled={loading}>
-        Sign up
+        {btnText}
       </Button>
     </form>
   );

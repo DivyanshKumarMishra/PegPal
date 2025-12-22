@@ -3,6 +3,7 @@ import { Baloo_2, Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from './_custom_components/Navbar';
 import { Toaster } from 'sonner';
+import UserProvider from './_contexts/user/UserProvider';
 
 const baloo = Baloo_2({
   subsets: ['latin'],
@@ -31,11 +32,13 @@ export default function RootLayout({
       <body
         className={`relative flex flex-col h-screen ${baloo.variable} ${inter.variable}`}
       >
-        <Navbar />
-        <main className="top-15 flex-1 min-h-0 overflow-auto space-y-8 md:space-y-0 md:space-x-12">
-          {children}
-        </main>
-        <Toaster richColors />
+        <UserProvider>
+          <Navbar />
+          <main className="top-15 flex-1 min-h-0 overflow-auto space-y-8 md:space-y-0 md:space-x-12">
+            {children}
+          </main>
+          <Toaster richColors />
+        </UserProvider>
       </body>
     </html>
   );

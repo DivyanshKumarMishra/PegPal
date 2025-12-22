@@ -14,22 +14,20 @@ import {
 import AppLogo from '@/app/_custom_components/Logo';
 import type { SubmitHandler } from 'react-hook-form';
 import useFetch from '@/hooks/UseFetch';
-import { SIGNUP_URL } from '@/utils/url_constants';
+import { SIGNUP_URL } from '@/utils/Constants';
 import { toast } from 'sonner';
+import { redirect } from 'next/navigation';
+import { Api_Method } from '@/types/base';
 
 function SignupPage() {
-  const { apiFunc, loading } = useFetch<UserPublic>();
+  const { apiFunc, loading } = useFetch<SignupValues, UserPublic>();
 
   const signupHandler: SubmitHandler<SignupValues> = async (data) => {
-    const apiData = await apiFunc(SIGNUP_URL, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    toast.success('Signup successful');
+    const { ok } = await apiFunc(SIGNUP_URL, Api_Method.POST, data);
+    if (ok) {
+      toast.success('Signup successful');
+      redirect('/login');
+    }
   };
 
   return (
@@ -48,6 +46,7 @@ function SignupPage() {
           schema={signup_schema}
           submitHandler={signupHandler}
           loading={loading}
+          btnText="Sign in"
         />
         <span className="px-6 text-center text-muted-foreground">
           Already have an account?{' '}

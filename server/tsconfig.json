@@ -21,5 +21,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force"
   },
-  "exclude": ["prisma.config.ts", "prisma/**", "generated/**"]
+  "exclude": ["prisma.config.ts", "prisma/**", "generated/**"],
+  "include": ["src"]
 }

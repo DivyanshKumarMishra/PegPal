@@ -6,7 +6,9 @@ import cookieParser from 'cookie-parser';
 import { CORS_OPTIONS, NODE_ENV, PORT } from './config/app_config';
 import authRouter from './routes/auth.route';
 import { CustomError } from './utils/CustomError';
-import colors from 'colors'
+import colors from 'colors';
+import userRouter from './routes/user.route';
+import verifyToken from './middlewares/verifyToken';
 
 const app = express();
 
@@ -17,29 +19,36 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 
+app.use(verifyToken)
+
+app.use('/api/user', userRouter);
+
 app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof CustomError) {
     return res.status(error.statusCode).json({
-      error: error.message,
+      message: error.message,
       details: error.details,
     });
   }
 
   if (error instanceof Error) {
     return res.status(500).json({
-      error: error.message,
+      message: error.message,
     });
   }
 
   return res.status(500).json({
-    error: 'Something went wrong',
+    message: 'Something went wrong',
   });
 });
 
 async function runServer() {
   try {
     app.listen(PORT, async () => {
-      console.log(`${NODE_ENV.toLocaleUpperCase()} Server is running on port: ${PORT}`.yellow);
+      console.log(
+        `${NODE_ENV.toLocaleUpperCase()} Server is running on port: ${PORT}`
+          .yellow
+      );
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
