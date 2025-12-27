@@ -19,6 +19,7 @@ import { toast } from 'sonner';
 import { Api_Method } from '@/types/base';
 import { useUser } from '@/app/_contexts/user/UserContext';
 import { redirect } from 'next/navigation';
+import { UserPublic } from '@/types/user/user';
 
 function LoginPage() {
   const { initUser } = useUser();
@@ -34,7 +35,7 @@ function LoginPage() {
   };
 
   return (
-    <Card className="w-full md:max-w-lg lg:max-w-xl px-6 bg-black/50 backdrop-blur-xl ">
+    <Card className="w-full md:max-w-lg lg:max-w-xl bg-black/50 backdrop-blur-xl ">
       <CardHeader>
         <CardTitle className="flex justify-center">
           <AppLogo className="text-5xl md:text-6xl" />

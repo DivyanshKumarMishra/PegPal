@@ -2,7 +2,7 @@ import React from 'react';
 
 function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className='flex h-full items-center justify-center px-6 w-full'>
+    <div className='flex-1 flex items-center justify-center w-full'>
       {children}
     </div>
   );

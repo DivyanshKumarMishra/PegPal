@@ -40,11 +40,11 @@ export default function useFetch<TBody = unknown, TResponse = unknown>() {
       setLoading(false);
       return { ok: true, data: result };
     } catch (error: unknown) {
-      const { message } = CreateErrorObj(error);
-      setError(message);
-      toast.error(message);
+      const err = CreateErrorObj(error);
+      setError(err.message);
+      toast.error(err.message);
       setLoading(false);
-      return { ok: false };
+      return { ok: false, error: err };
     }
   };
 

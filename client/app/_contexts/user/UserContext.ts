@@ -1,3 +1,4 @@
+import { UserPublic } from '@/types/user/user';
 import { createContext, useContext } from 'react';
 
 type UserStateType = {

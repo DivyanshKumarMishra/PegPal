@@ -18,6 +18,7 @@ import { SIGNUP_URL } from '@/utils/Constants';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';
 import { Api_Method } from '@/types/base';
+import { UserPublic } from '@/types/user/user';
 
 function SignupPage() {
   const { apiFunc, loading } = useFetch<SignupValues, UserPublic>();
@@ -31,7 +32,7 @@ function SignupPage() {
   };
 
   return (
-    <Card className="w-full md:max-w-lg lg:max-w-xl px-6 bg-black/50 backdrop-blur-xl ">
+    <Card className="w-full md:max-w-lg lg:max-w-xl bg-black/50 backdrop-blur-xl ">
       <CardHeader>
         <CardTitle className="flex justify-center">
           <AppLogo className="text-5xl md:text-6xl" />
@@ -46,7 +47,7 @@ function SignupPage() {
           schema={signup_schema}
           submitHandler={signupHandler}
           loading={loading}
-          btnText="Sign in"
+          btnText="Sign up"
         />
         <span className="px-6 text-center text-muted-foreground">
           Already have an account?{' '}

@@ -30,11 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`relative flex flex-col h-screen ${baloo.variable} ${inter.variable}`}
+        className={`relative min-h-screen flex flex-col bg-[url('/white-snow.jpg')] bg-cover bg-fixed bg-center ${baloo.variable} ${inter.variable}`}
       >
         <UserProvider>
-          <Navbar />
-          <main className="top-15 flex-1 min-h-0 overflow-auto space-y-8 md:space-y-0 md:space-x-12">
+          <div
+            className={`pt-5 px-6 lg:px-10 sticky top-0 z-50 bg-[url('/white-snow.jpg')] bg-cover bg-fixed bg-center`}
+          >
+            <Navbar />
+          </div>
+          <main className="flex-1 flex flex-col py-10 px-6 lg:p-10">
             {children}
           </main>
           <Toaster richColors />

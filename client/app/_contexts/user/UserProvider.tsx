@@ -4,8 +4,8 @@ import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { UserContext } from './UserContext';
 import { axios_next } from '@/utils/Axios.client';
 import { ME_URL } from '@/utils/Constants';
-import CreateErrorObj from '@/utils/Error';
 import { redirect } from 'next/navigation';
+import { UserPublic } from '@/types/user/user';
 
 export default function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserPublic | null>(null);

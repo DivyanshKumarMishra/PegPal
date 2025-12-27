@@ -27,7 +27,6 @@ const Signup = BaseController(async (req, res, next) => {
 const Login = BaseController(async (req, res, next) => {
   const body = req.body;
   const parsed = LoginSchema.safeParse(body);
-  // throw new CustomError('Intentional Error', 400);
 
   if (!parsed?.success) {
     const error: Record<string, string> = getValidationErrors(
@@ -51,4 +50,15 @@ const Login = BaseController(async (req, res, next) => {
   }
 });
 
-export { Signup, Login };
+const Logout = BaseController(async (req, res, next) => {
+  res.clearCookie('pegpal_jwt_token', {
+    httpOnly: true,
+    secure: NODE_ENV === 'production' ? true : false,
+    sameSite: NODE_ENV === 'production' ? 'none' : 'lax',
+    maxAge: 0,
+  });
+
+  res.status(200).json(`You've been successfully logged out`);
+});
+
+export { Signup, Login, Logout };

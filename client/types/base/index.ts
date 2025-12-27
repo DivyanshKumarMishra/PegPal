@@ -4,9 +4,8 @@ export type ErrorResponse = Error & {
 };
 
 export type ApiResult<T> =
-  | { ok: true; data: T }
-  | { ok: false };
-
+  | { ok: true; data?: T }
+  | { ok: false; error?: ErrorResponse };
 
 export enum Api_Method {
   'GET',
