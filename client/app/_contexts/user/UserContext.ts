@@ -1,18 +1,24 @@
 import { UserPublic } from '@/types/user/user';
 import { createContext, useContext } from 'react';
 
+export enum UserStatus {
+  Loading,
+  Authenticated,
+  Guest,
+}
+
 type UserStateType = {
   user: UserPublic | null;
-  userLoading: boolean;
-  setUserLoading: (loading: boolean) => void;
+  userStatus: UserStatus;
+  setUserStatus: (status: UserStatus) => void;
   initUser: () => void;
   clearUser: () => void;
 };
 
 const initValue: UserStateType = {
   user: null,
-  userLoading: false,
-  setUserLoading: (loading: boolean) => {},
+  userStatus: UserStatus.Guest,
+  setUserStatus: (status: UserStatus) => {},
   initUser: () => {},
   clearUser: () => {},
 };

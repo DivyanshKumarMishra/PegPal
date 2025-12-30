@@ -12,8 +12,8 @@ const heroText = {
 function HeroSection() {
   return (
     <section className="w-full">
-      <div className="py-10 w-full flex flex-col md:flex-row gap-10 md:gap-0 items-center md:h-150">
-        <div className="h-full md:w-1/2 px-6 lg:pl-20 flex flex-col items-center md:items-start justify-center gap-5">
+      <div className="w-full flex flex-col md:flex-row gap-10 md:gap-0 items-center md:h-150">
+        <div className="h-full md:w-1/2 px-6 lg:px-10 flex flex-col items-center md:items-start justify-center gap-5">
           <h1 className="font-logo text-5xl md:text-5xl lg:text-6xl text-accent text-center md:text-left font-bold leading-tight">
             {heroText.head_text}
           </h1>
