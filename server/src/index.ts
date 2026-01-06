@@ -17,9 +17,14 @@ app.use(urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+// to check if server is running in container
+app.use('/health', (req, res, next) => {
+  res.status(200).json({ status: 'OK' });
+});
+
 app.use('/api/auth', authRouter);
 
-app.use(verifyToken)
+app.use(verifyToken);
 
 app.use('/api/user', userRouter);
 

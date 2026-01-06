@@ -35,13 +35,14 @@ npx tsc --init
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
-    "module": "CommonJS",
-    "target": "ES2020",
+    "target": "ES2023",
     "lib": ["esnext"],
     "types": ["node"],
     "strict": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
@@ -52,7 +53,9 @@ npx tsc --init
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force"
-  }
+  },
+  "exclude": ["prisma.config.ts", "prisma/**", "generated/**"],
+  "include": ["src"]
 }
 ```
 
